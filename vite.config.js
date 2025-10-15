@@ -4,6 +4,9 @@ import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
 
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+
 export default defineConfig(({ command }) => {
   return {
     define: {
@@ -44,5 +47,10 @@ export default defineConfig(({ command }) => {
         sort: 'mobile-first',
       }),
     ],
+    css: {
+      postcss: {
+        plugins: [autoprefixer(), cssnano({ preset: 'default' })],
+      },
+    },
   };
 });
